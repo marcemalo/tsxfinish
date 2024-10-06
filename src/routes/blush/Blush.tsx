@@ -1,5 +1,5 @@
 import { useGetProductsBlushQuery} from "../../redux/api/products";
-import "./Blush.css"
+import "./blush.css"
 
 
 const Blush = () => {
