@@ -1,0 +1,21 @@
+.hero__text{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+     margin-top: 20px;
+    height: 48px;
+
+}
+.hero__h2{
+    font-size: 20px;
+    line-height: 28px;
+}
+.hero__wrapper{
+    height: 600px;
+}
+.hero__carousel{
+    margin-top: 10px;
+}
