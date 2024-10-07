@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useGetProductByIdQuery } from "../../redux/api/products";
+import { useGetProductByIdQuery } from "../../redux/api/products.ts";
 import "./details.css";
 
 const Details = () => {
