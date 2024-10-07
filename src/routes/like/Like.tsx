@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 const Like = () => {
   const dispatch = useDispatch();
   const likedProducts = useSelector((state: any) => state.like?.likedProducts || []);
-  const { data: Product } = useGetProductsQuery();
+  const { data: Product } = useGetProductsQuery(undefined);
   const likedProductDetails = Product?.filter(product => likedProducts.includes(product.id));
 
   console.log(likedProducts);
