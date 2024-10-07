@@ -18,7 +18,7 @@ const Details = () => {
                 <span className="deal-tag">DEAL</span>
                 <h1>{product.name}</h1>
                 <div className="product-rating">
-                  <span>⭐⭐⭐⭐⭐</span> 
+                  <span>⭐⭐⭐⭐⭐</span>
                   <span>{product.reviews} отзывов</span>
                 </div>
                 <p className="product-category">{product.category}</p>
