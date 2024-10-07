@@ -1,10 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "../slice/auth";
 import { api } from "../api";
+import likeReducer from "../slice/LikeSlice";
+import currencyReducer from "../slice/CurrensySlice";
+import cartReducer from "../slice/CartSlice";
 
 const store = configureStore({
     reducer: {
         auth: authReducer,
+        like: likeReducer,
+        cart: cartReducer,
+        currency: currencyReducer,
         [api.reducerPath] : api.reducer
     },
     middleware: (getDefaultMiddleware) =>

@@ -17,6 +17,7 @@
     justify-content: space-between;
     align-items: center;
     height: 40px;
+    border-bottom: #212121 1px solid;
 
 }
 .nav__ul{
@@ -67,4 +68,9 @@
 .nav__icons{
     display: flex;
     gap: 20px;
+}
+.main__logo{
+    width: 264px;
+    height: 60px;
+    margin-left: 90px;
 }

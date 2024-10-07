@@ -8,12 +8,18 @@ import Eyeshadow from "./routes/eyeshadow/Eyeshadow"
 import Foundation from "./routes/foudation/Foundation"
 import Lipliner from "./routes/lipliner/Lipliner"
 import Mascra from "./routes/mascara/Mascra"
+import Like from "./routes/like/Like"
+import Details from "./routes/details/Details"
+import "./index.css"
+import Cart from "./routes/cart/Cart"
+
 
 function App() {
 
   return (
     <>
-    <Nav/>
+   <div className="App">
+   <Nav/>
            <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/blush" element={<Blush/>} />
@@ -23,7 +29,11 @@ function App() {
         <Route path="/foundation" element={<Foundation />} />
         <Route path="/lipliner" element={<Lipliner />} />
         <Route path="/mascara" element={<Mascra />} />
+        <Route path="/like" element={<Like/>} />
+        <Route path="/details/:id" element={<Details />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
+   </div>
     </>
   )
 }

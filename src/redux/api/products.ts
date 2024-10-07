@@ -1,4 +1,4 @@
-import { Blush, Bronzer, Eyeliner, Product, Eyeshadow, Foundation, Lipliner, Mascara } from "../../types/auth";
+import {  Details, Product,  } from "../../types/auth";
 import { api } from "./index";
 
 const productsApi = api.injectEndpoints({
@@ -9,7 +9,13 @@ const productsApi = api.injectEndpoints({
             }),
             providesTags: ["PRODUCTS"]
         }),
-        getProductsBlush: build.query<Blush[], undefined>({
+        getProductById: build.query({ 
+            query: (id) => ({
+              url: `/products/${id}.json`,
+            }),
+            providesTags: ["PRODUCTS"]
+          }),
+        getProductsBlush: build.query<Product[], undefined>({
             query: () => ({
                 url: "/products.json?product_category=powder&product_type=blush",
                 params: {
@@ -18,7 +24,7 @@ const productsApi = api.injectEndpoints({
             }),
             providesTags: ["PRODUCTS"]
         }),
-        getProductsBronzer: build.query<Bronzer[], undefined>({
+        getProductsBronzer: build.query<Product[], undefined>({
             query: () => ({
                 url: "/products.json?product_category=powder&product_type=bronzer",
                 params: {
@@ -27,7 +33,7 @@ const productsApi = api.injectEndpoints({
             }),
             providesTags: ["PRODUCTS"]
         }),
-        getProductsEyeLiner: build.query<Eyeliner[], undefined>({
+        getProductsEyeLiner: build.query<Product[], undefined>({
             query: () => ({
                 url: "/products.json?product_category=liquid&product_type=eyeliner",
                 params: {
@@ -36,7 +42,7 @@ const productsApi = api.injectEndpoints({
             }),
             providesTags: ["PRODUCTS"]
         }),
-        getProductsEyeshadow: build.query<Eyeshadow[], undefined>({
+        getProductsEyeshadow: build.query<Product[], undefined>({
             query: () => ({
                 url: "/products.json?product_category=palette&product_type=eyeshadow",
                 params: {
@@ -45,7 +51,7 @@ const productsApi = api.injectEndpoints({
             }),
             providesTags: ["PRODUCTS"]
         }),
-        getProductsFoundation: build.query<Foundation[], undefined>({
+        getProductsFoundation: build.query<Product[], undefined>({
             query: () => ({
                 url: "/products.json?product_category=concealer&product_type=foundation",
                 params: {
@@ -54,7 +60,7 @@ const productsApi = api.injectEndpoints({
             }),
             providesTags: ["PRODUCTS"]
         }),
-        getProductsLipliner: build.query<Lipliner[], undefined>({
+        getProductsLipliner: build.query<Product[], undefined>({
             query: () => ({
                 url: "/products.json?product_category=lipstick&product_type=lipstick",
                 params: {
@@ -63,7 +69,7 @@ const productsApi = api.injectEndpoints({
             }),
             providesTags: ["PRODUCTS"]
         }),
-        getProductsMascara: build.query<Mascara[], undefined>({
+        getProductsMascara: build.query<Product[], undefined>({
             query: () => ({
                 url: "/products.json?product_category=&product_type=mascara",
                 params: {
@@ -85,6 +91,7 @@ export const {
     useGetProductsEyeshadowQuery,
     useGetProductsFoundationQuery ,
     useGetProductsLiplinerQuery,
-    useGetProductsMascaraQuery
+    useGetProductsMascaraQuery,
+    useGetProductByIdQuery
 
 } = productsApi;

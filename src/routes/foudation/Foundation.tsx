@@ -1,4 +1,5 @@
 import { useGetProductsFoundationQuery } from "../../redux/api/products";
+import { Link } from "react-router-dom";
 
 const Foundation = () => {
 
@@ -47,7 +48,7 @@ const Foundation = () => {
     {data?.map((item) => (
             <div key={item.id} className="hit__card">
               <div className="hit__badge">DEAL</div>
-              <img className="hit__img" src={item.image_link} alt={item.name} />
+              <Link to={`/details/${item.id}`}><img className="hit__img" src={item.image_link} alt={item.name} /></Link>
               <div className="hit__content">
                 <h3 className="hit__name">{item.name}</h3>
                 <p className="hit__price">

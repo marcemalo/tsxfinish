@@ -2,10 +2,17 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { FcLike } from "react-icons/fc";
 import { GoSearch } from "react-icons/go";
 import { Link } from "react-router-dom";
+import Mainlogo from "../../img/download.svg"
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
+import { setCurrency } from "../../redux/slice/CurrensySlice";
+
 import './nav.css'
 
 
-const Nav = () => {
+const Nav: React.FC = () => {
+    const dispatch = useDispatch();
+    const currency = useSelector((state: RootState) => state.currency.selected);
   return (
     <div className="nav">
         <div className="container">
@@ -23,7 +30,10 @@ const Nav = () => {
                     </ul>
                 </div>
                 <div className="nav__p2">
-                    <p  className="nav__p">★ Beauty Club</p>
+                    <p  className="nav__p"> <select value={currency} onChange={(e) => dispatch(setCurrency(e.target.value))} className="border border-gray-300 p-2 rounded-md w-[100px] focus:outline-none focus:ring focus:ring-black">
+            <option value="USD">USD</option>
+            <option value="UZS">UZS</option>
+          </select></p>
                 </div>
             </div>
 
@@ -32,12 +42,12 @@ const Nav = () => {
                     <GoSearch className="nav__icon" />
                 </div>
                 <div className="nav__logo">
-                    <h1 className="nav__h1"><Link to='/'>MAKEUP</Link></h1>
+                    <h1 className="nav__h1"><Link to='/'><img className="main__logo" src={Mainlogo} alt="" /></Link></h1>
                 </div>
 
                 <div className="nav__icons">
-                    <FcLike className="nav__icon" />
-                    <AiOutlineShoppingCart className="nav__icon"/>
+                    <Link to="/like"><FcLike className="nav__icon"/></Link>
+                    <Link to="/cart"><AiOutlineShoppingCart className="nav__icon"/></Link>
                 </div>
 
             </div>
