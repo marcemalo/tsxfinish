@@ -1,7 +1,7 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { unlikeProduct } from "../../redux/slice/LikeSlice";
 import { useGetProductsQuery } from "../../redux/api/products";
-import { useSelector } from "react-redux";
+import "./like.css"; 
 
 const Like = () => {
   const dispatch = useDispatch();
@@ -9,36 +9,65 @@ const Like = () => {
   const { data: Product } = useGetProductsQuery(undefined);
   const likedProductDetails = Product?.filter(product => likedProducts.includes(product.id));
 
-  console.log(likedProducts);
-
   const handleDelete = (productId: number) => {
     dispatch(unlikeProduct(productId));
   };
-  console.log(likedProductDetails);
 
   return (
-    <div>
-      <h2 className="text-3xl text-center font-bold mb-8">Liked Products</h2>
-      {likedProductDetails && likedProductDetails.length > 0 ? (
-        likedProductDetails.map((product) => (
-          <div key={product.id} className="mb-4 p-4 border border-gray-300 rounded-lg">
-            <h3 className="text-xl font-semibold">{product.name}</h3>
-            <p className="text-gray-600">{product.category}</p>
-            <p className="text-pink-600 font-bold">${product.price}</p>
-            <img src={product.image_link} alt={product.name} className="w-20 h-20 object-cover" />
-            <div>
-              <button
-                className="bg-red-500 text-white px-4 py-2 rounded-lg mt-4"
-                onClick={() => handleDelete(product.id)} 
-              >
-                Delete
+    <div className="like-page">
+
+      <div className="sidebarr">
+      <div className="sidebar">
+        <ul>
+          <li>Контактная информация</li>
+          <li>Адресная книга</li>
+          <li>История заказов</li>
+          <li className="active">Список желаний</li>
+          <li>Выход</li>
+        </ul>
+      </div>
+
+      <div className="wishlist-content">
+        <h2 className="text-3xl font-bold mb-8">Список желаний</h2>
+        {likedProductDetails && likedProductDetails.length > 0 ? (
+          likedProductDetails.map((product) => (
+            <div key={product.id} className="product-card">
+              <div className="product-info">
+                <img src={product.image_link} alt={product.name} className="product-image" />
+                <div className="product-details">
+                  <h3>{product.name}</h3>
+                  <p>{product.category}</p>
+                  <p className="product-price">{product.price} сум</p>
+                  <p className="in-stock">{product.id ? "Есть в наличии!" : "Нет в наличии"}</p>
+                </div>
+              </div>
+              <button className="delete-button" onClick={() => handleDelete(product.id)}>
+                Удалить
               </button>
             </div>
-          </div>
-        ))
-      ) : (
-        <p className="text-center text-gray-600">No liked products found.</p>
-      )}
+          ))
+        ) : (
+          <p className="no-products">Нет понравившихся товаров.</p>
+        )}
+      </div>
+      </div>
+
+
+      <div className="footer">
+        <div className="subscribe-section">
+          <p>Узнавайте первыми о распродажах и новинках!</p>
+          <input type="email" placeholder="Ваш email" />
+          <button className="subscribe-button">Подписаться</button>
+        </div>
+        <div className="footer-links">
+          <ul>
+            <li>О нас</li>
+            <li>Контакты</li>
+            <li>О доставке</li>
+            <li>Способы оплаты</li>
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };

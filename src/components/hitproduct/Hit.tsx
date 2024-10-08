@@ -44,7 +44,7 @@ const Hit = () => {
           {data?.map((item) => (
             <div key={item.id} className="hit__card">
               <div className="hit__badge">HIT</div>
-              <div className="hit__like-icon"><button onClick={() => handleLikeProduct(item)}><FcLike /></button></div>
+              <div className="hit__like-icon"><FcLike onClick={() => handleLikeProduct(item)} /></div>
              <Link to={`/details/${item.id}`}><img className="hit__img" src={item.image_link} alt={item.name} /></Link>
               <div className="hit__content">
                 <h3 className="hit__name">{item.name}</h3>
@@ -84,7 +84,7 @@ const Hit = () => {
           {data?.map((item) => (
             <div key={item.id} className="hit__card">
               <div className="hit__badge">DEAL</div>
-              <div className="hit__like-icon"><FcLike /></div>
+              <div className="hit__like-icon"><FcLike onClick={() => handleLikeProduct(item)} /></div>
               <Link to={`/details/${item.id}`}><img className="hit__img" src={item.image_link} alt={item.name} /></Link>
               <div className="hit__content">
                 <h3 className="hit__name">{item.name}</h3>
@@ -96,7 +96,7 @@ const Hit = () => {
                   <span>★★★★★ {item.rating}</span>
                   <span>5</span>
                 </p>
-                <button className="hit__buy-btn">Купить</button>
+                <button  onClick={() => handleAddToCart(item)} className="hit__buy-btn">Купить</button>
               </div>
             </div>
           )).slice(130, 134)}

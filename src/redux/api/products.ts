@@ -1,4 +1,4 @@
-import {  Details, Product,  } from "../../types/auth";
+import {   Product,  } from "../../types/auth";
 import { api } from "./index";
 
 const productsApi = api.injectEndpoints({
@@ -9,7 +9,7 @@ const productsApi = api.injectEndpoints({
             }),
             providesTags: ["PRODUCTS"]
         }),
-        getProductById: build.query({ 
+        getProductById: build.query({
             query: (id) => ({
               url: `/products/${id}.json`,
             }),

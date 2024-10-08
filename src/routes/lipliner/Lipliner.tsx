@@ -1,9 +1,32 @@
 import { useGetProductsLiplinerQuery } from "../../redux/api/products";
 import { Link } from "react-router-dom"
+import { addToCart } from "../../redux/slice/CartSlice";
+import { useDispatch } from "react-redux";
+import { Product } from "../../types/auth";
+import { RootState } from "../../redux/store";
+import { useSelector } from "react-redux";
 
 const Lipliner = () => {
 
      const { data } = useGetProductsLiplinerQuery(undefined);
+           const currency = useSelector((state: RootState) => state.currency.selected);
+
+
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (product: Product) => {
+    dispatch(addToCart(product));
+};
+
+const Price = (price: string) => {
+    const numbericPrice = parseFloat(price);
+    if (isNaN(numbericPrice)) return "";
+
+    if (currency === "UZS") {
+        return (numbericPrice * 12600).toLocaleString() + " UZS";
+    }
+    return "$" + numbericPrice.toFixed(2);
+};
 
   return (
     <div className="category">
@@ -68,13 +91,13 @@ const Lipliner = () => {
                 <h3 className="hit__name">{item.name}</h3>
                 <p className="hit__price">
                   <span>Price</span>
-                  <span className="hit__price-new">{item.price}$</span>
+                  <span className="hit__price-new">{Price(item.price)}</span>
                 </p>
                 <p className="hit__rating">
                   <span>★★★★★ {item.rating}</span>
                   <span>5</span>
                 </p>
-                <button className="hit__buy-btn">Купить</button>
+                <button onClick={() => handleAddToCart(item)} className="hit__buy-btn">Купить</button>
               </div>
             </div>
           )).slice(6, 34)}

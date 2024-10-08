@@ -5,23 +5,21 @@ import Carouselimg3 from "../../img/yajmxhdhxlvj.jpg"
 import Carouselimg4 from "../../img/tf7weaer0u0a.jpg"
 import Carouselimg5 from "../../img/3.jpg"
 import Carouselimg6 from "../../img/4.jpg"
+import { Link } from "react-router-dom"
 
 const Hero = () => {
     return (
         <div className="hero">
             <div className="container">
             <div className="hero__text">
-                        <h2 className="hero__h2">Парфюмерия</h2>
-                        <h2 className="hero__h2">Макияж</h2>
-                        <h2 className="hero__h2">Волосы</h2>
-                        <h2 className="hero__h2">Лицо</h2>
-                        <h2 className="hero__h2">Тело и ванна</h2>
-                        <h2 className="hero__h2">Мужчинам</h2>
-                        <h2 className="hero__h2">Аксессуары</h2>
-                        <h2 className="hero__h2">Health & Care</h2>
-                        <h2 className="hero__h2">Подарки</h2>
-                        <h2 className="hero__h2">Одежда</h2>
-                        <h2 className="hero__h2">Бренды</h2>
+            <Link className="hero__link " to={"/blush"}><h2 className="hero__h2">Powder</h2></Link>
+            <Link className="hero__link " to={"/bronzer"}><h2 className="hero__h2">Bronzer</h2></Link>
+            <Link className="hero__link " to={"/eyeliner"}><h2 className="hero__h2">Pencil</h2></Link>
+            <Link className="hero__link " to={"/eyeshadow"}><h2 className="hero__h2">Palette</h2></Link>
+            <Link className="hero__link " to={"/foundation"}><h2 className="hero__h2">Concealer </h2></Link>
+            <Link className="hero__link " to={"/lipliner"}><h2 className="hero__h2">Lipstick</h2></Link>
+            <Link className="hero__link " to={"/mascara"}><h2 className="hero__h2">Mascara</h2></Link>
+                    
                     </div>
                 <div className="hero__wrapper">
 

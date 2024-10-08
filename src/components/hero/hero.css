@@ -19,3 +19,7 @@
 .hero__carousel{
     margin-top: 10px;
 }
+.hero__link{
+    color:black;
+    font-size: 20px;
+}
