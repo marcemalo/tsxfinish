@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { Product } from "../../types/auth";
 import { RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
+import { notification } from "antd";
 
 const Foundation = () => {
 
@@ -17,6 +18,9 @@ const Foundation = () => {
 
   const handleAddToCart = (product: Product) => {
     dispatch(addToCart(product));
+    notification.success({
+        message : `Siz ${product.name}  maxsuloti korzinkaga qoshildi`,
+      })
 };
 
 const Price = (price: string) => {

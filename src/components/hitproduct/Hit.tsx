@@ -1,3 +1,4 @@
+import { AiOutlineHeart } from "react-icons/ai"; 
 import { FcLike } from "react-icons/fc";
 import { useGetProductsQuery } from "../../redux/api/products";
 import "./hit.css";
@@ -14,21 +15,39 @@ import Hitimage3 from "../../img/vr8eco0hmkpq.jpg";
 import Hitimage4 from "../../img/mvqluafeqrmy.jpg";
 import Hitimage5 from "../../img/hkn5cfvzprka.jpg";
 import Hitimage6 from "../../img/emwladahcsvw.jpg";
+import {  notification } from "antd";
+import { unlikeProduct } from "../../redux/slice/LikeSlice";
+
 
 
 const Hit = () => {
   const { data } = useGetProductsQuery(undefined);
   const currency = useSelector((state: RootState) => state.currency.selected);
+  const likedProducts = useSelector((state: RootState) => state.like.likedProducts);
+  console.log(likedProducts)
 
   const handleLikeProduct = (product: Product) => {
-    dispatch(likeProduct(product.id));
-};
-
+    if(likedProducts.some((id) => id === product.id)) {
+      dispatch(unlikeProduct(product.id));
+      notification.error({
+        message : `Siz ${product.name}  maxsulotga unlike bosildi`,
+      })
+    }
+    else{
+      dispatch(likeProduct(product.id));
+    notification.success({
+      message : `Siz ${product.name}  maxsulotga like bosildi`,
+    })
+    }
+  };
   const dispatch = useDispatch();
 
   const handleAddToCart = (product: Product) => {
     dispatch(addToCart(product));
-};
+    notification.success({
+      message : `Siz ${product.name}  maxsuloti korzinkaga qoshildi`,
+    })
+  };
 
 
 
@@ -37,10 +56,10 @@ const Hit = () => {
     if (isNaN(numbericPrice)) return "";
 
     if (currency === "UZS") {
-        return (numbericPrice * 12400).toLocaleString() + " UZS";
+      return (numbericPrice * 12400).toLocaleString() + " UZS";
     }
     return "$" + numbericPrice.toFixed(2);
-};
+  };
 
 
   return (
@@ -51,8 +70,8 @@ const Hit = () => {
           {data?.map((item) => (
             <div key={item.id} className="hit__card">
               <div className="hit__badge">HIT</div>
-              <div className="hit__like-icon"><FcLike onClick={() => handleLikeProduct(item)} /></div>
-             <Link to={`/details/${item.id}`}><img className="hit__img" src={item.image_link} alt={item.name} /></Link>
+              <div onClick={() => handleLikeProduct(item)} className="hit__like-icon">{likedProducts.some((product) => product === item.id) ? <FcLike  /> : <AiOutlineHeart /> }</div>
+              <Link to={`/details/${item.id}`}><img className="hit__img" src={item.image_link} alt={item.name} /></Link>
               <div className="hit__content">
                 <h3 className="hit__name">{item.name}</h3>
                 <p className="hit__price">
@@ -63,13 +82,13 @@ const Hit = () => {
                   <span>★★★★★ {item.rating}</span>
                   <span>5</span>
                 </p>
-                <button  onClick={() => handleAddToCart(item)}  className="hit__buy-btn">Купить</button>
+                <button onClick={() => handleAddToCart(item)} className="hit__buy-btn">Купить</button>
               </div>
             </div>
           )).slice(60, 64)}
         </div>
         <div className="hit__wrapper2">
-        {data?.map((item) => (
+          {data?.map((item) => (
             <div key={item.id} className="hit__card1">
               <Link to={`/details/${item.id}`}><img className="hit__img1" src={item.image_link} alt={item.name} /></Link>
               <div className="hit__content">
@@ -91,7 +110,7 @@ const Hit = () => {
           {data?.map((item) => (
             <div key={item.id} className="hit__card">
               <div className="hit__badge">DEAL</div>
-              <div className="hit__like-icon"><FcLike onClick={() => handleLikeProduct(item)} /></div>
+              <div onClick={() => handleLikeProduct(item)} className="hit__like-icon">{likedProducts.some((product) => product === item.id) ? <FcLike  /> : <AiOutlineHeart /> }</div>
               <Link to={`/details/${item.id}`}><img className="hit__img" src={item.image_link} alt={item.name} /></Link>
               <div className="hit__content">
                 <h3 className="hit__name">{item.name}</h3>
@@ -103,7 +122,7 @@ const Hit = () => {
                   <span>★★★★★ {item.rating}</span>
                   <span>5</span>
                 </p>
-                <button   onClick={() => handleAddToCart(item)} className="hit__buy-btn">Купить</button>
+                <button onClick={() => handleAddToCart(item)} className="hit__buy-btn">Купить</button>
               </div>
             </div>
           )).slice(130, 134)}
@@ -120,8 +139,8 @@ const Hit = () => {
           {data?.map((item) => (
             <div key={item.id} className="hit__card">
               <div className="hit__badge">DEAL</div>
-              <div className="hit__like-icon"><FcLike onClick={() => handleLikeProduct(item)} /></div>
-             <Link to={`/details/${item.id}`}><img className="hit__img" src={item.image_link} alt={item.name} /></Link>
+              <div onClick={() => handleLikeProduct(item)} className="hit__like-icon">{likedProducts.some((product) => product === item.id) ? <FcLike  /> : <AiOutlineHeart /> }</div>
+              <Link to={`/details/${item.id}`}><img className="hit__img" src={item.image_link} alt={item.name} /></Link>
               <div className="hit__content">
                 <h3 className="hit__name">{item.name}</h3>
                 <p className="hit__price">
@@ -132,13 +151,13 @@ const Hit = () => {
                   <span>★★★★★ {item.rating}</span>
                   <span>5</span>
                 </p>
-                <button  onClick={() => handleAddToCart(item)}  className="hit__buy-btn">Купить</button>
+                <button onClick={() => handleAddToCart(item)} className="hit__buy-btn">Купить</button>
               </div>
             </div>
           )).slice(70, 74)}
         </div>
         <div className="hit__wrapper2">
-        {data?.map((item) => (
+          {data?.map((item) => (
             <div key={item.id} className="hit__card1">
               <Link to={`/details/${item.id}`}><img className="hit__img1" src={item.image_link} alt={item.name} /></Link>
               <div className="hit__content">
@@ -160,7 +179,7 @@ const Hit = () => {
           {data?.map((item) => (
             <div key={item.id} className="hit__card">
               <div className="hit__badge">DEAL</div>
-              <div className="hit__like-icon"><FcLike onClick={() => handleLikeProduct(item)} /></div>
+              <div onClick={() => handleLikeProduct(item)} className="hit__like-icon">{likedProducts.some((product) => product === item.id) ? <FcLike  /> : <AiOutlineHeart /> }</div>
               <Link to={`/details/${item.id}`}><img className="hit__img" src={item.image_link} alt={item.name} /></Link>
               <div className="hit__content">
                 <h3 className="hit__name">{item.name}</h3>
@@ -172,7 +191,7 @@ const Hit = () => {
                   <span>★★★★★ {item.rating}</span>
                   <span>5</span>
                 </p>
-                <button   onClick={() => handleAddToCart(item)} className="hit__buy-btn">Купить</button>
+                <button onClick={() => handleAddToCart(item)} className="hit__buy-btn">Купить</button>
               </div>
             </div>
           )).slice(630, 634)}
@@ -189,8 +208,8 @@ const Hit = () => {
           {data?.map((item) => (
             <div key={item.id} className="hit__card">
               <div className="hit__badge">HIT</div>
-              <div className="hit__like-icon"><FcLike onClick={() => handleLikeProduct(item)} /></div>
-             <Link to={`/details/${item.id}`}><img className="hit__img" src={item.image_link} alt={item.name} /></Link>
+              <div onClick={() => handleLikeProduct(item)} className="hit__like-icon">{likedProducts.some((product) => product === item.id) ? <FcLike  /> : <AiOutlineHeart /> }</div>
+              <Link to={`/details/${item.id}`}><img className="hit__img" src={item.image_link} alt={item.name} /></Link>
               <div className="hit__content">
                 <h3 className="hit__name">{item.name}</h3>
                 <p className="hit__price">
@@ -201,13 +220,13 @@ const Hit = () => {
                   <span>★★★★★ {item.rating}</span>
                   <span>5</span>
                 </p>
-                <button  onClick={() => handleAddToCart(item)}  className="hit__buy-btn">Купить</button>
+                <button onClick={() => handleAddToCart(item)} className="hit__buy-btn">Купить</button>
               </div>
             </div>
           )).slice(900, 904)}
         </div>
         <div className="hit__wrapper2">
-        {data?.map((item) => (
+          {data?.map((item) => (
             <div key={item.id} className="hit__card1">
               <Link to={`/details/${item.id}`}><img className="hit__img1" src={item.image_link} alt={item.name} /></Link>
               <div className="hit__content">
@@ -229,7 +248,7 @@ const Hit = () => {
           {data?.map((item) => (
             <div key={item.id} className="hit__card">
               <div className="hit__badge">DEAL</div>
-              <div className="hit__like-icon"><FcLike onClick={() => handleLikeProduct(item)} /></div>
+              <div onClick={() => handleLikeProduct(item)} className="hit__like-icon">{likedProducts.some((product) => product === item.id) ? <FcLike  /> : <AiOutlineHeart /> }</div>
               <Link to={`/details/${item.id}`}><img className="hit__img" src={item.image_link} alt={item.name} /></Link>
               <div className="hit__content">
                 <h3 className="hit__name">{item.name}</h3>
@@ -241,7 +260,7 @@ const Hit = () => {
                   <span>★★★★★ {item.rating}</span>
                   <span>5</span>
                 </p>
-                <button   onClick={() => handleAddToCart(item)} className="hit__buy-btn">Купить</button>
+                <button onClick={() => handleAddToCart(item)} className="hit__buy-btn">Купить</button>
               </div>
             </div>
           )).slice(190, 194)}

@@ -6,6 +6,7 @@ import { RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
 import "./blush.css"
 import { Link } from "react-router-dom"
+import { notification } from "antd";
 
 
 const Blush = () => {
@@ -19,6 +20,9 @@ const Blush = () => {
 
   const handleAddToCart = (product: Product) => {
     dispatch(addToCart(product));
+    notification.success({
+        message : `Siz ${product.name}  maxsuloti korzinkaga qoshildi`,
+      })
 };
 
  const Price = (price: string) => {
