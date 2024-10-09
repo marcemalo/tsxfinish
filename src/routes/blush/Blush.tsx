@@ -21,7 +21,7 @@ const Blush = () => {
     dispatch(addToCart(product));
 };
 
-const Price = (price: string) => {
+ const Price = (price: string) => {
     const numbericPrice = parseFloat(price);
     if (isNaN(numbericPrice)) return "";
 

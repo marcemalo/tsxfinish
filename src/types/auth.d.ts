@@ -1,6 +1,10 @@
 export type Product = {
     readonly id:           number;
     readonly quantity:     number;
+    readonly product_colors: {
+        hex_value: string;
+        colour_name: string;
+      }[];
     readonly brand:        string;
     readonly name:         string;
     readonly price:        string;

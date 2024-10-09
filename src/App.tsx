@@ -12,14 +12,15 @@ import Like from "./routes/like/Like"
 import Details from "./routes/details/Details"
 import "./index.css"
 import Cart from "./routes/cart/Cart"
+import Footer from "./components/footer/Footer"
 
 
 function App() {
 
   return (
     <>
+      <Nav/>
    <div className="App">
-   <Nav/>
            <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/blush" element={<Blush/>} />
@@ -34,6 +35,8 @@ function App() {
         <Route path="/cart" element={<Cart />} />
       </Routes>
    </div>
+   <Footer/>
+
     </>
   )
 }
